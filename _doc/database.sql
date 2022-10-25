@@ -37,3 +37,10 @@ CREATE TABLE compras(
     data DATETIME NOT NULL,
     FOREIGN KEY (p_id) REFERENCES pacotes(ID)
 );
+
+CREATE TABLE local(
+    ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    posicao INT,
+    f_id INT,
+    FOREIGN KEY (f_id) REFERENCES figurinhas(ID)
+);
