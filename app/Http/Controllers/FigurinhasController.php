@@ -16,12 +16,12 @@ class FigurinhasController extends Controller{
 
     function createf(){
         
-        // $filename = 'J4xgksKNAkazIa153QCDYpD6tgwQBJrmsQXe9Gta.png';
+        $filename = 'RJ46f2n3vSyHB56UQCWNHPvmIn6uyUDhBXJzxbzp.png';
         // //echo Storage::url($filename);
 
         // echo asset("storage/{$filename}");
         // echo "<br/>";
-        // echo "<img src='" .  asset("storage/{$filename}")."'/>";
+        echo "<img src=" . url('storage/'.$filename) ."/>";
         // die();
         return view('figurinhas.create');
     }
@@ -42,7 +42,7 @@ class FigurinhasController extends Controller{
 
 
 
-        $path = $request->file('foto')->store('imagens');
+        $path = $request->file('foto')->store('public');
         $parts = explode("/", $path);
         $filename = $parts[count($parts)-1];
       
