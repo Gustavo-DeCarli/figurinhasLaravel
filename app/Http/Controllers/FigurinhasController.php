@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
 class FigurinhasController extends Controller{
     
     function index(){
@@ -13,24 +15,46 @@ class FigurinhasController extends Controller{
     }
 
     function createf(){
+        
+        // $filename = 'J4xgksKNAkazIa153QCDYpD6tgwQBJrmsQXe9Gta.png';
+        // //echo Storage::url($filename);
+
+        // echo asset("storage/{$filename}");
+        // echo "<br/>";
+        // echo "<img src='" .  asset("storage/{$filename}")."'/>";
+        // die();
         return view('figurinhas.create');
     }
     function storef(Request $request){
         $data = $request->all();
         unset($data['_token']);
-        $arquivo = $_FILES['foto']['name'];
         
-        $pasta_dir = "../../../public/images/";
+
         
-        $arquivo_nome = $pasta_dir . $arquivo;
         
-        move_uploaded_file($_FILES["foto"]['tmp_name'], $arquivo_nome);
+        //move_uploaded_file($_FILES["foto"]['tmp_name'], $arquivo_nome);
         $certo ['id'] = '';
         $certo ['nome'] = $data['nome'];
-        $certo ['foto'] = $arquivo_nome;
+        $certo ['foto'] = "";
         $certo ['naturalidade'] = $data['nt'];
 
-        DB::table('figurinhas')->insert($certo);
+        //$id = DB::table('figurinhas')->insertGetId($certo);
+
+
+
+        $path = $request->file('foto')->store('imagens');
+        $parts = explode("/", $path);
+        $filename = $parts[count($parts)-1];
+      
+         echo Storage::url($filename);
+         echo "<br/>";
+        echo asset("storage/{$filename}");
+        echo "<br/>";
+        echo "<img src='" .  asset("storage/{$filename}")."'/>";
+die();
+        //DB::table('figurinhas')->where('id', $id)->update(['foto' => $filename]);
+
+
         return redirect('/figurinhas');
     }
     function editf($id){
