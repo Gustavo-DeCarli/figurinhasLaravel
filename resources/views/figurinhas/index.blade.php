@@ -16,11 +16,11 @@
             <tr>
                 <td>{{$figurinha->nome}}</td>
                 <td>{{$figurinha->dtnasc}}</td>
-                <td>{{$figurinha->nt}}</td>
+                <td>{{$figurinha->naturalidade}}</td>
                 <td>
-                    <a class="btn btn-warning" href="/figurinhas/{{$figurinha->id}}/fedit">Editar</a>
-                    <a class="btn btn-info" href="/figurinhas/{{$figurinha->id}}/fshow">Ver</a>
-                    <a class="btn btn-danger" href="/figurinhas/{{$figurinha->id}}/fdestroy">Remover</a>
+                    <a class="btn btn-warning" href="/figurinhas/{{$figurinha->ID}}/fedit">Editar</a>
+                    <a class="btn btn-info" href="/figurinhas/{{$figurinha->ID}}/fshow">Ver</a>
+                    <a class="btn btn-danger" href="/figurinhas/{{$figurinha->ID}}/fdestroy">Remover</a>
                 </td>
             </tr>
         @endforeach

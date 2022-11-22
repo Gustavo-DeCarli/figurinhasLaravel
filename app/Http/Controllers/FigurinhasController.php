@@ -15,55 +15,39 @@ class FigurinhasController extends Controller{
     }
 
     function createf(){
-        
-        $filename = 'RJ46f2n3vSyHB56UQCWNHPvmIn6uyUDhBXJzxbzp.png';
-        // //echo Storage::url($filename);
-
-        // echo asset("storage/{$filename}");
-        // echo "<br/>";
-        echo "<img src=" . url('storage/'.$filename) ."/>";
-        // die();
         return view('figurinhas.create');
     }
     function storef(Request $request){
+        $filenameWithExt = $request->file('foto')->getClientOriginalName();
+        //Get just filename
+        $filename = pathinfo($filenameWithExt);
+        
+        // Filename to store
+        $fileNameToStore = $filename["filename"] . '_' . time() . '.' . $filename["extension"];
+
+        // Upload Image
+        $path = $request->file('foto')->storeAs('', $fileNameToStore);
+
         $data = $request->all();
         unset($data['_token']);
         
-
-        
-        
-        //move_uploaded_file($_FILES["foto"]['tmp_name'], $arquivo_nome);
-        $certo ['id'] = '';
+        $certo ['id'] = null;
         $certo ['nome'] = $data['nome'];
-        $certo ['foto'] = "";
+        $certo ['foto'] = $path;
         $certo ['naturalidade'] = $data['nt'];
+        $certo ['dtnasc'] = "1985-07-14";
 
-        //$id = DB::table('figurinhas')->insertGetId($certo);
-
-
-
-        $path = $request->file('foto')->store('public');
-        $parts = explode("/", $path);
-        $filename = $parts[count($parts)-1];
-      
-         echo Storage::url($filename);
-         echo "<br/>";
-        echo asset("storage/{$filename}");
-        echo "<br/>";
-        echo "<img src='" .  asset("storage/{$filename}")."'/>";
-die();
-        //DB::table('figurinhas')->where('id', $id)->update(['foto' => $filename]);
-
-
+        $id = DB::table('figurinhas')->insertGetId($certo);
         return redirect('/figurinhas');
     }
+
     function editf($id){
         $figurinhas = DB::table('figurinhas')->find($id);
         return view('figurinhas.edit', ['figurinhas' => $figurinhas]);
     }
     function updatef(Request $request)
     {
-        $data = $request->all();
+    $data = $request->all();
         unset($data['_token']);
         $id = array_shift($data);
         DB::table('figurinhas')
