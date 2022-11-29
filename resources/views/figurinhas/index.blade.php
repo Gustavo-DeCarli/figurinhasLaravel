@@ -50,15 +50,23 @@
                 <div class="card my-3">
                     <img src="{{asset('/imagens')}}/{{$figurinha->foto}}" class="rounded mx-auto mt-3 card-image-top" alt="thumbnail" width="270" height="252">
                     <div class=" card-body">
-                    <input type='hidden' value='{{$figurinha->ID}}' >
-                    <h3 class="card-title">Nome: {{$figurinha->nome}}</h3>
-                    <p class="card-text">Data de Nascimento: {{$figurinha->dtnasc}} </p>
-                    <p class="card-text">Naturalidade: {{$figurinha->naturalidade}} </p>
+                        <input type='hidden' value='{{$figurinha->ID}}'>
+                        <h3 class="card-title">Nome: {{$figurinha->nome}}</h3>
+                        <p class="card-text">Data de Nascimento: {{$figurinha->dtnasc}} </p>
+                        <p class="card-text">Naturalidade: {{$figurinha->naturalidade}} </p>
+                        <div class="mx-auto btn-group">
+                            <form method="GET" action="figurinhas/{{ $figurinha->ID }}/fedit">
+                                <input class='btn rounded btn-warning' value='Editar' type='submit'>
+                            </form>
+                            <form method="GET" action="figurinhas/{{ $figurinha->ID }}/fdestroy">
+                                <input class='rounded btn btn-danger' value='Excluir' type='submit'>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
+            @endforeach
         </div>
-        @endforeach
-    </div>
 </section>
 
 @endsection
