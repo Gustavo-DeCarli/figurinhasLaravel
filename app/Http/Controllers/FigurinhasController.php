@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -9,8 +10,11 @@ class FigurinhasController extends Controller{
     
     function index(){
         $figurinhas = DB::table('figurinhas')->get();
+        
+        $usuario = Auth::user()?->name;
+
         return view('figurinhas.index', [
-            'figurinhas' => $figurinhas,
+            'figurinhas' => $figurinhas, 'usuario' => $usuario
         ]);
     }
 
@@ -35,7 +39,7 @@ class FigurinhasController extends Controller{
         $certo ['nome'] = $data['nome'];
         $certo ['foto'] = $path;
         $certo ['naturalidade'] = $data['nt'];
-        $certo ['dtnasc'] = $data['dtnasc'];
+        $certo ['dtnasc'] = "1985-07-14";
 
         $id = DB::table('figurinhas')->insertGetId($certo);
         return redirect('/figurinhas');

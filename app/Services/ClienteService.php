@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Servicos;
+namespace App\Services;
 
 use App\Models\Usuario;
 use Illuminate\Support\Facades\DB;
@@ -10,7 +10,7 @@ class ClienteService
 {
    public function salvarUsuario(Usuario $user){
     try{
-        $dbUsuario = Usuario::where("username", $user->username)->first();
+        $dbUsuario = Usuario::where("name", $user->name)->first();
         if($dbUsuario){
             return['status' => 'err' , 'message'=> 'Perfil já cadastrado.'];
         }

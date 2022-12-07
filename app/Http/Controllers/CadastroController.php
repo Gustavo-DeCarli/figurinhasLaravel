@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
-use App\Servicos\ClienteService;
+use App\Services\ClienteService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -24,7 +24,7 @@ class   CadastroController extends Controller
         $usuario = new Usuario();
 
         $usuario->fill($values);
-        $usuario->username = $form->input("username", "");
+        $usuario->name = $form->input("email", "");
 
         $senha = $form->input("password", "");
         $usuario->password = Hash::make($senha);

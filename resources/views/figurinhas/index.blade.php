@@ -21,7 +21,7 @@
             <li></li>
 
             <li>
-                <form method="POST">
+                <form method="GET" action="/logout">
                     <button class="ml-5 " id="logout" name="logout" type="input" class="btn-logout btn-danger " data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Logout
                     </button>
@@ -30,7 +30,7 @@
             <li></li>
 
             <li>
-                <img class="logo" src="{{asset('/img/perfil.png')}}" width="150" weight="100">Moderador</a>
+                <img disabled class="logo" src="{{asset('/img/perfil.png')}}" width="60" weight="10">{{$usuario}}</a>
             </li>
             </li>
         </ul>
@@ -43,7 +43,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="mb-3 text-black text-center">Figurinhas Info</h2>
+                <h2 class="mb-3 text-black text-center">Figurinhas Do Infoderão</h2>
             </div>
             @foreach($figurinhas as $figurinha)
             <div class="col-md-3 col-lg-3">
@@ -55,13 +55,11 @@
                         <p class="card-text">Data de Nascimento: {{$figurinha->dtnasc}} </p>
                         <p class="card-text">Naturalidade: {{$figurinha->naturalidade}} </p>
                         <div class="mx-auto btn-group">
-                            <form method="GET" action="figurinhas/{{$figurinha->ID}}/fdestroy">
-                                <input class='rounded btn btn-danger' value='Excluir' type='submit'>
-                            </form>
-                        </div>
-                        <div class="mx-auto btn-group">
-                            <form method="GET" action="figurinhas/{{$figurinha->ID}}/fedit">
+                            <form method="GET" action="figurinhas/{{ $figurinha->ID }}/fedit">
                                 <input class='btn rounded btn-warning' value='Editar' type='submit'>
+                            </form>
+                            <form method="GET" action="figurinhas/{{ $figurinha->ID }}/fdestroy">
+                                <input class='rounded btn btn-danger' value='Excluir' type='submit'>
                             </form>
                         </div>
                     </div>
@@ -69,7 +67,6 @@
             </div>
             @endforeach
         </div>
-    </div>
 </section>
 
 @endsection

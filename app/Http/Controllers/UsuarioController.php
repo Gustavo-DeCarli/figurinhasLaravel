@@ -17,13 +17,13 @@ class UsuarioController extends Controller
             //e volta
             // para a página anterior
             $credenciais = $form->validate([
-                'username' => ['required'],
+                'name' => ['required'],
                 'password' => ['required'],
             ]);
             // Tenta o login
             if (Auth::attempt($credenciais)) {
                 session()->regenerate();
-                return redirect()->route('home');
+                return redirect('figurinhas');
             } else {
                 return redirect()
                     ->route('login')
