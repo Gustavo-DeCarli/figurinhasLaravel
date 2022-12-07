@@ -35,7 +35,7 @@ class FigurinhasController extends Controller{
         $certo ['nome'] = $data['nome'];
         $certo ['foto'] = $path;
         $certo ['naturalidade'] = $data['nt'];
-        $certo ['dtnasc'] = "1985-07-14";
+        $certo ['dtnasc'] = $data['dtnasc'];
 
         $id = DB::table('figurinhas')->insertGetId($certo);
         return redirect('/figurinhas');
