@@ -13,11 +13,6 @@
                 </form>
             </li>
 
-            <li><button id="novo" type="button" class="btn-new btn-success " data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                    Figurinhas Repetidas
-                </button>
-            </li>
-
             <li></li>
 
             <li>
@@ -25,6 +20,7 @@
                     <button class="ml-5 " id="logout" name="logout" type="input" class="btn-logout btn-danger " data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Logout
                     </button>
+                </form>
             </li>
 
             <li></li>
