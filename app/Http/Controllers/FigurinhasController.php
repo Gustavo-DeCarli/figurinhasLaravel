@@ -59,10 +59,12 @@ class FigurinhasController extends Controller{
             ->update($data);
         return redirect('/figurinhas');
     }
-    function showf($id){
-        $figurinhas = DB::table('figurinhas')->select()->find($id);
-        return view('figurinhas.show', ['figurinhas' => $figurinhas]);
+
+
+    function show(){
+        return view('figurinhas.show', []);
     }
+
     function destroyf($id)
     {
         DB::table('figurinhas')->where('id', $id)->delete();

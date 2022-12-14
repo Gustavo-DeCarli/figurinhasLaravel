@@ -13,11 +13,17 @@
                 </form>
             </li>
 
+            <li>
+                <form action='figurinhas/show'>
+                    <input id="novo" type="submit" value='Album' class="btn-new btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                </form>
+            </li>
+
             <li></li>
 
             <li>
                 <form method="GET" action="/logout">
-                    <button class="ml-5 " id="logout" name="logout" type="input" class="btn-logout btn-danger " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button class="btn btn-outline-danger ml-5" id="logout" name="logout" type="submit">
                         Logout
                     </button>
                 </form>
